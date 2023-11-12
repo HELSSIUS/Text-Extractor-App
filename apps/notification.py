@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QErrorMessage
 from winotify import Notification, audio
-from apps.config import Settings
-from apps.utils import get_logo
+from config import Settings
+from utils import get_logo
 from sys import platform
 
 

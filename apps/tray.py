@@ -2,10 +2,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction, QFileDialog, QWidget, QLabel, QWidgetAction
 from pytesseract import get_languages
 
-from apps.languages import Languages
-from apps.textExtractor import TextExtractor
-from apps.utils import get_logo, get_default_save_folder, get_hotkey
-from apps.config import Settings, Theme, LogoTheme
+from languages import Languages
+from textExtractor import TextExtractor
+from utils import get_logo, get_default_save_folder, get_hotkey
+from config import Settings, Theme, LogoTheme
 
 
 class TrayApp(QSystemTrayIcon):
@@ -19,11 +19,17 @@ class TrayApp(QSystemTrayIcon):
         self.extractor = TextExtractor()
         # start extractor
         self.extractor.start_event_loop()
+        # TODO add autoreload for extractor if pc was slept and now is working
+        #  or just add auto check is extractor running each 5 or 10 secs
 
     def __setup_ui(self):
         self.setToolTip(self.__settings.title)
         self.__set_icon()
         self.__set_menu()
+
+    def __set_icon(self):
+        icon = QIcon(get_logo())
+        self.setIcon(icon)
 
     def __set_menu(self):
         self.menu = QMenu()
@@ -106,15 +112,10 @@ class TrayApp(QSystemTrayIcon):
 
         # create and set quit action
         self.action_quit = QAction("Quit", self)
-        self.action_quit
         self.action_quit.triggered.connect(self.quit_application)
 
         # Add main menu items and the submenu to the main menu
         self.__set_items_menu()
-
-    def __set_icon(self):
-        icon = QIcon(get_logo())
-        self.setIcon(icon)
 
     def __add_actions_logo_menu(self):
         for logo_theme in LogoTheme:

@@ -1,6 +1,6 @@
 import sys
 from enum import Enum
-from apps.languages import Languages
+from languages import Languages
 from PyQt5.QtCore import QSettings
 from darkdetect import isDark
 
@@ -44,6 +44,9 @@ class Settings:
         self.save_folder: str | None = None
         self.languages: list[str] | None = None
         self.hotkey: str | None = None
+
+        # support fields
+        self.__run_path = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
 
         # update values
         self.__update_values()
@@ -102,16 +105,14 @@ class Settings:
         self.hotkey: str = self.__settings.value("hotkey", "shift+alt+a")
 
     def auto_start(self, enable: bool = True):
-        run_path = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-        autostart = QSettings(run_path, QSettings.NativeFormat)
+        autostart = QSettings(self.__run_path, QSettings.NativeFormat)
         if enable:
             autostart.setValue(self.title, sys.argv[0])
         else:
             autostart.remove(self.title)
 
     def is_auto_started(self):
-        run_path = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-        autostart = QSettings(run_path, QSettings.NativeFormat)
+        autostart = QSettings(self.__run_path, QSettings.NativeFormat)
         return self.title in autostart.allKeys()
 
     def __get_setting_values(self):

@@ -1,4 +1,4 @@
-from apps.config import Settings, LogoTheme, Theme
+from config import Settings, LogoTheme, Theme
 import os.path
 import darkdetect
 import keyboard
@@ -7,8 +7,9 @@ get_theme = darkdetect.theme
 is_dark = darkdetect.isDark
 
 
-def get_system_theme():
-    return Theme.DARK if is_dark() else Theme.LIGHT
+def get_main_dir():
+    file_path = os.path.abspath(__file__)
+    return os.path.dirname(os.path.dirname(file_path))
 
 
 def get_default_save_folder():
@@ -31,11 +32,6 @@ def get_logo():
         return os.path.join(main_dir, r"res\logo_light.svg")
     else:
         return os.path.join(main_dir, r"res\logo.svg")
-
-
-def get_main_dir():
-    file_path = os.path.abspath(__file__)
-    return os.path.dirname(os.path.dirname(file_path))
 
 
 def get_hotkey():
