@@ -1,6 +1,6 @@
 import sys
 from enum import Enum
-from languages import Languages
+from apps.languages import Languages
 from PyQt5.QtCore import QSettings
 from darkdetect import isDark
 

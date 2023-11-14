@@ -1,10 +1,8 @@
 import os
-
 from pytesseract import TesseractNotFoundError
-
-from screenshot import ScreenShot
-from notification import ScreenShotNotification, show_wrong_msg
-from config import Settings
+from apps.screenshot import ScreenShot
+from apps.notification import ScreenShotNotification, show_wrong_msg
+from apps.config import Settings
 import pyperclip
 import cv2
 import pytesseract

@@ -2,10 +2,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction, QFileDialog, QWidget, QLabel, QWidgetAction
 from pytesseract import get_languages
 
-from languages import Languages
-from textExtractor import TextExtractor
-from utils import get_logo, get_default_save_folder, get_hotkey
-from config import Settings, Theme, LogoTheme
+from apps.languages import Languages
+from apps.textExtractor import TextExtractor
+from apps.utils import get_logo, get_default_save_folder, get_hotkey
+from apps.config import Settings, Theme, LogoTheme
 
 
 class TrayApp(QSystemTrayIcon):

@@ -5,8 +5,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # work with images (PIL/Pillow)
 from PIL import ImageGrab
 # my modules
-from utils import get_default_save_folder
-from config import Settings
+from apps.utils import get_default_save_folder
+from apps.config import Settings
 # default modules
 import datetime
 import os.path

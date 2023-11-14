@@ -1,4 +1,4 @@
-from config import Settings, LogoTheme, Theme
+from apps.config import Settings, LogoTheme, Theme
 import os.path
 import darkdetect
 import keyboard
